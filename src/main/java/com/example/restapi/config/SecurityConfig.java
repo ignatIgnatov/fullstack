@@ -30,6 +30,9 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private static final String ROLE_ADMIN = "ADMIN";
+    private static final String ROLE_USER = "USER";
+
     private final RSAKeyProperties keys;
 
     public SecurityConfig(RSAKeyProperties keys) {
@@ -57,9 +60,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> {
                     auth
                             .requestMatchers("/auth/**").permitAll()
-                            .requestMatchers("/admin/**").hasRole("ADMIN")
-                            .requestMatchers("/user/**").hasAnyRole("ADMIN", "USER")
-                            .requestMatchers("/image/**").hasAnyRole("ADMIN", "USER")
+                            .requestMatchers("/admin/**").hasRole(ROLE_ADMIN)
+                            .requestMatchers("/user/**").hasAnyRole(ROLE_ADMIN, ROLE_USER)
                             .anyRequest().authenticated();
                 })
 
