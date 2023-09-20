@@ -1,5 +1,6 @@
 package com.example.restapi.service.impl;
 
+import com.example.restapi.exception.ImageNotFoundException;
 import com.example.restapi.exception.UserNotFoundException;
 import com.example.restapi.model.ImageEntity;
 import com.example.restapi.model.UserEntity;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -61,7 +63,6 @@ public class ImageServiceImpl implements ImageService {
         }
 
 
-        // file format validation
         if (!file.getContentType().equals("image/jpeg") && !file.getContentType().equals("image/png")) {
             throw new RuntimeException("only .jpeg and .png images are supported");
         }
@@ -79,8 +80,6 @@ public class ImageServiceImpl implements ImageService {
                 .path("/file/download/").path(timeStampedFileName).toUriString();
 
         ImageEntity image = new ImageEntity(file.getOriginalFilename(), fileUri, fileDownloadUri, file.getSize(), user);
-
-//        imageRepository.save(image);
 
         user.setImage(image);
         userRepository.save(user);
@@ -106,11 +105,9 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public ImageResponse getImage(Long userId) {
-        UserEntity user = userRepository.findById(userId).get();
+        UserEntity user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("User not found"));
 
-        ImageEntity image = imageRepository.findById(user.getImage().getId()).orElseThrow(() -> {
-            throw new RuntimeException("Image not found");
-        });
+        ImageEntity image = imageRepository.findById(user.getImage().getId()).orElseThrow(() -> new ImageNotFoundException("Image not found"));
         return modelMapper.map(image, ImageResponse.class);
     }
 }

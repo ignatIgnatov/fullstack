@@ -4,8 +4,6 @@ import com.example.restapi.model.dto.userDto.EditUserDto;
 import com.example.restapi.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -18,7 +16,7 @@ public class UserController {
     }
 
     @PutMapping("/editUser")
-    public EditUserDto editUser(@RequestBody EditUserDto editUserDto) throws IOException {
+    public EditUserDto editUser(@RequestBody EditUserDto editUserDto) {
         return userService.editUser(editUserDto);
     }
 

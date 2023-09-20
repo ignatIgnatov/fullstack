@@ -25,6 +25,14 @@ public class ExceptionHandlerAdvice {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler({ImageNotFoundException.class})
+    public Map<String, String> imageNotFound(ImageNotFoundException e) {
+        Map<String, String> errors = new HashMap<>();
+        errors.put("Error", e.getMessage());
+        return errors;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({UserNotFoundException.class})
     public Map<String, String> userNotFound(UserNotFoundException e) {
         Map<String, String> errors = new HashMap<>();
