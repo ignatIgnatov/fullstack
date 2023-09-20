@@ -47,7 +47,7 @@ public class ImageServiceImpl implements ImageService {
 
     @Transactional
     @Override
-    public ImageResponse uploadFile(MultipartFile file, Long id) throws IOException {
+    public ImageResponse uploadFile(MultipartFile file, Long id) throws IOException, NullPointerException {
 
         if (!Files.exists(UPLOAD_PATH)) {
             Files.createDirectories(UPLOAD_PATH);
@@ -61,13 +61,10 @@ public class ImageServiceImpl implements ImageService {
         }
 
 
-        try {
-            if (!file.getContentType().equals("image/jpeg") && !file.getContentType().equals("image/png")) {
-                throw new RuntimeException("only .jpeg and .png images are supported");
-            }
-        } catch (Exception e) {
-            throw new NullPointerException(e.getMessage());
+        if (!file.getContentType().equals("image/jpeg") && !file.getContentType().equals("image/png")) {
+            throw new RuntimeException("only .jpeg and .png images are supported");
         }
+
 
         String timeStampedFileName = new SimpleDateFormat("ssmmHHddMMyyyy")
                 .format(new Date()) + "_" + file.getOriginalFilename();
