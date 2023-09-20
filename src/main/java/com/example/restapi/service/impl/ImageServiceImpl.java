@@ -61,8 +61,12 @@ public class ImageServiceImpl implements ImageService {
         }
 
 
-        if (!file.getContentType().equals("image/jpeg") && !file.getContentType().equals("image/png")) {
-            throw new RuntimeException("only .jpeg and .png images are supported");
+        try {
+            if (!file.getContentType().equals("image/jpeg") && !file.getContentType().equals("image/png")) {
+                throw new RuntimeException("only .jpeg and .png images are supported");
+            }
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
         }
 
         String timeStampedFileName = new SimpleDateFormat("ssmmHHddMMyyyy")
