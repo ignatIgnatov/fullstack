@@ -1,9 +1,7 @@
 package com.example.restapi.web;
 
-import com.example.restapi.model.UserEntity;
 import com.example.restapi.model.dto.userDto.EditUserDto;
 import com.example.restapi.service.UserService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
