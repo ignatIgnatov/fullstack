@@ -23,7 +23,7 @@ public class AdminService {
     public List<UserDto> getAllUsers() {
         return userRepository.findAll().stream()
                 .map(user -> modelMapper.map(user, UserDto.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public void deleteUser(Long id) {
