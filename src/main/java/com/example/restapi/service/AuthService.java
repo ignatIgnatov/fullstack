@@ -58,10 +58,10 @@ public class AuthService {
             roleRepository.save(new RoleEntity("USER"));
         }
 
-        RoleEntity userRole = roleRepository.findByAuthority("USER").get();
+        RoleEntity userRole = roleRepository.findByAuthority("USER").orElseThrow(() -> new RuntimeException("Role not found"));
 
         if (userRepository.count() == 0) {
-            userRole = roleRepository.findByAuthority("ADMIN").get();
+            userRole = roleRepository.findByAuthority("ADMIN").orElseThrow(() -> new RuntimeException("Role not found"));
         }
 
         Set<RoleEntity> authorities = new HashSet<>();

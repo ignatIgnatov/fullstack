@@ -54,9 +54,7 @@ public class ImageServiceImpl implements ImageService {
         }
 
 
-        UserEntity user = userRepository.findById(id).orElseThrow(() -> {
-            throw new UserNotFoundException("User not found");
-        });
+        UserEntity user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found"));
 
         if (user.getImage() != null) {
             imageRepository.deleteById(user.getImage().getId());
