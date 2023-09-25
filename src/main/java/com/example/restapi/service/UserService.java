@@ -37,6 +37,20 @@ public class UserService implements UserDetailsService {
         UserEntity user = userRepository.findById(editUserDto.getId())
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
 
+        user
+                .setFirstName(editUserDto.getFirstName())
+                .setLastName(editUserDto.getLastName())
+                .setAge(editUserDto.getAge())
+                .setGender(editUserDto.getGender())
+                .setCity(editUserDto.getCity())
+                .setAddress(editUserDto.getAddress())
+                .setEducation(editUserDto.getEducation())
+                .setWorkplace(editUserDto.getWorkplace())
+                .setFacebook(editUserDto.getFacebook())
+                .setGithub(editUserDto.getGithub());
+
+
+        userRepository.save(user);
         return modelMapper.map(user, EditUserDto.class);
     }
 

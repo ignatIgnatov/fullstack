@@ -24,36 +24,36 @@ public class ImageController {
         this.imageService = imageService;
     }
 
-    @GetMapping("/get/{id}")
-    public ImageResponse getImage(@PathVariable("id") Long id) {
-        return this.imageService.getImage(id);
-    }
+//    @GetMapping("/get/{id}")
+//    public ImageResponse getImage(@PathVariable("id") Long id) {
+//        return this.imageService.getImage(id);
+//    }
+//
+//    @GetMapping("/download/{fileName:.+}")
+//    public ResponseEntity<Object> downloadFile(@PathVariable String fileName, HttpServletRequest request) {
+//
+//        try {
+//            Resource resource = this.imageService.fetchFileAsResource(fileName);
+//            String contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
+//
+//            if (contentType == null) {
+//                contentType = "application/octet-stream";
+//            }
+//
+//            return ResponseEntity.ok()
+//                    .contentType(MediaType.parseMediaType(contentType))
+//                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+//                    .body(resource);
+//
+//        } catch (IOException ex) {
+//            return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+//        }
+//    }
 
-    @GetMapping("/download/{fileName:.+}")
-    public ResponseEntity<Object> downloadFile(@PathVariable String fileName, HttpServletRequest request) {
-
-        try {
-            Resource resource = this.imageService.fetchFileAsResource(fileName);
-            String contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
-
-            if (contentType == null) {
-                contentType = "application/octet-stream";
-            }
-
-            return ResponseEntity.ok()
-                    .contentType(MediaType.parseMediaType(contentType))
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
-                    .body(resource);
-
-        } catch (IOException ex) {
-            return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @PostMapping("/upload/{id}")
-    public ResponseEntity<Object> uploadFiles(@PathVariable("id") Long id ,@RequestParam("image") MultipartFile file) throws IOException {
-
-      return ResponseEntity.ok(imageService.uploadFile(file, id));
-    }
+//    @PostMapping("/upload/{id}")
+//    public ResponseEntity<Object> uploadFiles(@PathVariable("id") Long id ,@RequestParam("image") MultipartFile file) throws IOException {
+//
+//      return ResponseEntity.ok(imageService.uploadFile(file, id));
+//    }
 }
 

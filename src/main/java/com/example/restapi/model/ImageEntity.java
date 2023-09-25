@@ -19,17 +19,17 @@ public class ImageEntity {
     @Column
     private long fileSize;
 
-    @OneToOne(mappedBy = "image")
-    private UserEntity user;
+//    @OneToOne(mappedBy = "image")
+//    private UserEntity user;
 
-    public ImageEntity(String fileName, String fileUri, String fileDownloadUri, long fileSize, UserEntity user) {
-
-        this.fileName = fileName;
-        this.fileUri = fileUri;
-        this.fileDownloadUri = fileDownloadUri;
-        this.fileSize = fileSize;
-        this.user = user;
-    }
+//    public ImageEntity(String fileName, String fileUri, String fileDownloadUri, long fileSize, UserEntity user) {
+//
+//        this.fileName = fileName;
+//        this.fileUri = fileUri;
+//        this.fileDownloadUri = fileDownloadUri;
+//        this.fileSize = fileSize;
+//        this.user = user;
+//    }
 
     public ImageEntity() {
     }
@@ -79,12 +79,12 @@ public class ImageEntity {
         return this;
     }
 
-    public UserEntity getUser() {
-        return user;
-    }
-
-    public ImageEntity setUser(UserEntity user) {
-        this.user = user;
-        return this;
-    }
+//    public UserEntity getUser() {
+//        return user;
+//    }
+//
+//    public ImageEntity setUser(UserEntity user) {
+//        this.user = user;
+//        return this;
+//    }
 }

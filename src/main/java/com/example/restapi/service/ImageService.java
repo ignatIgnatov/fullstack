@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public interface ImageService {
 
-    ImageResponse uploadFile(MultipartFile file, Long id) throws IOException;
-    Resource fetchFileAsResource(String fileName) throws FileNotFoundException;
-    ImageResponse getImage(Long userId);
+//    ImageResponse uploadFile(MultipartFile file, Long id) throws IOException;
+//    Resource fetchFileAsResource(String fileName) throws FileNotFoundException;
+//    ImageResponse getImage(Long userId);
 }

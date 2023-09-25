@@ -33,8 +33,12 @@ public class UserEntity implements UserDetails {
     private String github;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "image_id")
-    private ImageEntity image;
+    @JoinColumn(name = "picture_id")
+    private CloudinaryPictureEntity picture;
+
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "image_id")
+//    private ImageEntity image;
 
     @Column(name = "username", unique = true)
     private String username;
@@ -62,12 +66,22 @@ public class UserEntity implements UserDetails {
         this.authorities = authorities;
     }
 
-    public ImageEntity getImage() {
-        return image;
+//    public ImageEntity getImage() {
+//        return image;
+//    }
+//
+//    public UserEntity setImage(ImageEntity image) {
+//        this.image = image;
+//        return this;
+//    }
+
+
+    public CloudinaryPictureEntity getPicture() {
+        return picture;
     }
 
-    public UserEntity setImage(ImageEntity image) {
-        this.image = image;
+    public UserEntity setPicture(CloudinaryPictureEntity picture) {
+        this.picture = picture;
         return this;
     }
 
