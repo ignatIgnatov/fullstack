@@ -18,8 +18,8 @@ spring:
             enabled: true
 
 cloudinary:
-    cloud_name: 'ignatignatov'
-    api_key: '623264282727778'
+    cloud_name: "${CLOUDINARY_NAME}"
+    api_key: "${API_KEY}"
     api-secret: "${CLOUDINARY_SECRET}"
 
 
