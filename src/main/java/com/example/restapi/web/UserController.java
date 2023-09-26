@@ -1,7 +1,8 @@
 package com.example.restapi.web;
 
+import com.example.restapi.model.UserEntity;
 import com.example.restapi.model.dto.userDto.EditUserDto;
-import com.example.restapi.service.UserService;
+import com.example.restapi.service.impl.UserService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,12 +17,12 @@ public class UserController {
     }
 
     @PutMapping("/editUser")
-    public EditUserDto editUser(@RequestBody EditUserDto editUserDto) {
+    public UserEntity editUser(@RequestBody EditUserDto editUserDto) {
         return userService.editUser(editUserDto);
     }
 
     @GetMapping("/getUser/{id}")
-    public EditUserDto getUser(@PathVariable("id") Long id) {
+    public UserEntity getUser(@PathVariable("id") Long id) {
         return userService.getUser(id);
 
     }

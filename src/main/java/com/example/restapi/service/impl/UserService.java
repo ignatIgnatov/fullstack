@@ -1,4 +1,4 @@
-package com.example.restapi.service;
+package com.example.restapi.service.impl;
 
 import com.example.restapi.exception.UserNotFoundException;
 import com.example.restapi.model.UserEntity;
@@ -29,7 +29,7 @@ public class UserService implements UserDetailsService {
 
     }
 
-    public EditUserDto editUser(EditUserDto editUserDto) {
+    public UserEntity editUser(EditUserDto editUserDto) {
 
         UserEntity user = userRepository.findById(editUserDto.getId())
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
@@ -47,13 +47,14 @@ public class UserService implements UserDetailsService {
                 .setGithub(editUserDto.getGithub());
 
 
+
         userRepository.save(user);
-        return modelMapper.map(user, EditUserDto.class);
+        return user;
     }
 
-    public EditUserDto getUser(Long id) {
-        UserEntity user = userRepository.findById(id)
+    public UserEntity getUser(Long id) {
+
+        return userRepository.findById(id)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        return modelMapper.map(user, EditUserDto.class);
     }
 }
