@@ -76,11 +76,12 @@ class UserServiceTest {
         //Act
         UserDetails actual = serviceToTest.loadUserByUsername(testUser.getUsername());
 
-        //Assert
-        Assertions.assertEquals(actual.getUsername(), testUser.getUsername());
-
         String actualRoles = actual.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.joining(", "));
         String expectedRoles = "USER, ADMIN";
+
+        //Assert
+
+        Assertions.assertEquals(actual.getUsername(), testUser.getUsername());
         Assertions.assertEquals(expectedRoles, actualRoles);
 
     }
@@ -94,6 +95,12 @@ class UserServiceTest {
 
         Assertions.assertEquals(actual.getUsername(), testUser.getUsername());
         Assertions.assertEquals(actual.getEmail(), testUser.getEmail());
+    }
+
+    @Test
+    void userNotFoundByGetUserMethod() {
+        Assertions.assertThrows(UsernameNotFoundException.class,
+                () -> serviceToTest.getUser(-1500L));
     }
 
 
