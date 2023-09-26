@@ -35,16 +35,4 @@ public class AdminController {
         adminService.deleteUser(id);
         return ResponseEntity.ok().build();
     }
-
-    @GetMapping("/message/getAll")
-    public ResponseEntity<List<ContactMessageEntity>> getAll() {
-        return ResponseEntity.ok(contactMessageService.getAllMessages());
-    }
-
-    @DeleteMapping("/message/delete/{id}")
-    @Transactional
-    public ResponseEntity<ContactMessageEntity> deleteMessage(@PathVariable("id") Long id) {
-        contactMessageService.deleteMessage(id);
-        return ResponseEntity.ok().build();
-    }
 }

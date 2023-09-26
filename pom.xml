@@ -78,6 +78,13 @@
 			<artifactId>cloudinary</artifactId>
 			<version>1.0.14</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.hsqldb/hsqldb -->
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>2.7.2</version>
+			<scope>test</scope>
+		</dependency>
 
 	</dependencies>
 
