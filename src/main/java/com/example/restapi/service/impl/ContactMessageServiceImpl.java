@@ -4,10 +4,12 @@ import com.example.restapi.model.ContactMessageEntity;
 import com.example.restapi.model.dto.contactMessageDto.ContactMessageDto;
 import com.example.restapi.repository.ContactMessageRepository;
 import com.example.restapi.service.ContactMessageService;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.List;
 
 @Service
@@ -29,7 +31,7 @@ public class ContactMessageServiceImpl implements ContactMessageService {
                 .setEmail(messageDto.getEmail())
                 .setPhoneNumber(messageDto.getPhoneNumber())
                 .setMessage(messageDto.getMessage())
-                .setCreated(LocalDate.now());
+                .setCreated(LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE));
 
 
         contactMessageRepository.save(message);
