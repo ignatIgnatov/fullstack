@@ -14,11 +14,9 @@ public class ContactMessageServiceImpl implements ContactMessageService {
 
 
     private final ContactMessageRepository contactMessageRepository;
-    private final ModelMapper modelMapper;
 
-    public ContactMessageServiceImpl(ContactMessageRepository contactMessageRepository, ModelMapper modelMapper) {
+    public ContactMessageServiceImpl(ContactMessageRepository contactMessageRepository) {
         this.contactMessageRepository = contactMessageRepository;
-        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -31,7 +29,8 @@ public class ContactMessageServiceImpl implements ContactMessageService {
                 .setPhoneNumber(messageDto.getPhoneNumber())
                 .setMessage(messageDto.getMessage());
 
-        return contactMessageRepository.save(message);
+        contactMessageRepository.save(message);
+        return message;
     }
 
     @Override

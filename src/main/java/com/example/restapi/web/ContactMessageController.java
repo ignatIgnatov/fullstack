@@ -37,6 +37,4 @@ public class ContactMessageController {
         contactMessageService.deleteMessage(id);
         return ResponseEntity.ok().build();
     }
-
-
 }
