@@ -2,6 +2,8 @@ package com.example.restapi.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "contact_messages")
 public class ContactMessageEntity {
@@ -18,16 +20,19 @@ public class ContactMessageEntity {
     private String phoneNumber;
     @Column(name = "message")
     private String message;
+    @Column(name = "created")
+    private LocalDate created;
 
     public ContactMessageEntity() {
     }
 
-    public ContactMessageEntity(Long id, String authorName, String email, String phoneNumber, String message) {
+    public ContactMessageEntity(Long id, String authorName, String email, String phoneNumber, String message, LocalDate created) {
         this.id = id;
         this.authorName = authorName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.message = message;
+        this.created = created;
     }
 
     public Long getId() {
@@ -72,6 +77,15 @@ public class ContactMessageEntity {
 
     public ContactMessageEntity setMessage(String message) {
         this.message = message;
+        return this;
+    }
+
+    public LocalDate getCreated() {
+        return created;
+    }
+
+    public ContactMessageEntity setCreated(LocalDate created) {
+        this.created = created;
         return this;
     }
 }

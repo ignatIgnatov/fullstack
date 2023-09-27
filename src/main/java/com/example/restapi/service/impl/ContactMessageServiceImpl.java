@@ -7,6 +7,7 @@ import com.example.restapi.service.ContactMessageService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -27,7 +28,9 @@ public class ContactMessageServiceImpl implements ContactMessageService {
                 .setAuthorName(messageDto.getAuthorName())
                 .setEmail(messageDto.getEmail())
                 .setPhoneNumber(messageDto.getPhoneNumber())
-                .setMessage(messageDto.getMessage());
+                .setMessage(messageDto.getMessage())
+                .setCreated(LocalDate.now());
+
 
         contactMessageRepository.save(message);
         return message;

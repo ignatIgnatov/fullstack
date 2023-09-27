@@ -20,10 +20,10 @@ public class ContactMessageController {
         this.contactMessageService = contactMessageService;
     }
 
-    @PostMapping("/send")
-    public ResponseEntity<ContactMessageEntity>  sendMessage(@RequestBody ContactMessageDto messageDto) {
-        contactMessageService.sendMessage(messageDto);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    @PostMapping("/create")
+    public ResponseEntity<ContactMessageEntity>  createMessage(@RequestBody ContactMessageDto messageDto) {
+       ContactMessageEntity message =  contactMessageService.sendMessage(messageDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(message);
     }
 
     @GetMapping("/getAll")
