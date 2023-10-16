@@ -75,7 +75,6 @@ class ContactMessageControllerTest {
                 .andExpect(jsonPath("$.[1].authorName", is(testUser.getUsername())))
                 .andExpect(jsonPath("$.[1].email", is(testUser.getEmail())))
                 .andExpect(jsonPath("$.[1].message", is("this is message")));
-
     }
 
     @Test
@@ -84,18 +83,15 @@ class ContactMessageControllerTest {
                 .setMessage(CONTACT_MESSAGE_1);
 
         mockMvc.perform(
-                post("/message/create")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(testMessageDto))
-                        .accept(MediaType.APPLICATION_JSON)
-                        .with(csrf())
-        )
+                        post("/message/create")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(testMessageDto))
+                                .accept(MediaType.APPLICATION_JSON)
+                                .with(csrf())
+                )
                 .andExpect(status().isCreated())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.message").value(is(CONTACT_MESSAGE_1)))
-        ;
-
-
+                .andExpect(jsonPath("$.message").value(is(CONTACT_MESSAGE_1)));
     }
 
 
@@ -105,7 +101,7 @@ class ContactMessageControllerTest {
                 .setEmail(testUser.getEmail())
                 .setMessage("this is message");
 
-     testMessage = contactMessageRepository.save(testMessage);
-     return testMessage;
+        testMessage = contactMessageRepository.save(testMessage);
+        return testMessage;
     }
 }
