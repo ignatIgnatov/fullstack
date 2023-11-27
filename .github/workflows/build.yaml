@@ -12,7 +12,7 @@ jobs:
         with:
           java-version: '18'
           distribution: 'oracle'
-          cache: 'maven'
+          cache: maven
 
       - name: vnm clean install
         run: maven clean install
